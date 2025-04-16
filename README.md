@@ -4,6 +4,9 @@ Um projeto especial feito com carinho para minha esposa, que exibe o horóscopo 
 
 Se você quiser usar para surpreender seu amor, fique à vontade! ❤️
 
+![image](https://github.com/user-attachments/assets/58fac259-676b-48de-98d5-0edbdae70af3)
+
+
 ## 🌟 Sobre o Projeto
 
 Este é um site simples criado com **Python + Flask**, que faz scraping de previsões astrológicas e exibe de forma encantadora e amorosa. O visual é pensado para transmitir afeto — com corações flutuantes, frases apaixonadas e um toque de magia.
