@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Horóscopo do Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Fundo com corações flutuantes -->
+    <div class="coracoes-fundo" id="coracoesContainer"></div>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <!-- Estrelas piscando na borda -->
+        <div class="borda-estrelas">
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+            <div class="estrela-borda">✨</div>
+        </div>
+
+        <!-- Frase romântica -->
+        <p class="frase-romantica">
+            Feito com amor para você, meu Sol, minha Lua e meu céu estrelado ✨❤️
+        </p>
+
+        <!-- Coração animado -->
+        <div class="coracao">💖</div>
+
+        <h1>Horóscopo do Dia</h1>
+
+        <!-- Dropdown de signos -->
+        <select id="signo-select">
+            <option value="" disabled selected>Escolha seu signo</option>
+            <option value="aries">Áries</option>
+            <option value="touro">Touro</option>
+            <option value="gemeos">Gêmeos</option>
+            <option value="cancer">Câncer</option>
+            <option value="leao">Leão</option>
+            <option value="virgem">Virgem</option>
+            <option value="libra">Libra</option>
+            <option value="escorpiao">Escorpião</option>
+            <option value="sagitario">Sagitário</option>
+            <option value="capricornio">Capricórnio</option>
+            <option value="aquario">Aquário</option>
+            <option value="peixes">Peixes</option>
+        </select>
+
+        <button onclick="buscarHoroscopo()">Ver Horóscopo</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        async function buscarHoroscopo() {
+            const signo = document.getElementById('signo-select').value;
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = "Carregando...";
+
+            const resposta = await fetch(`/api/horoscopo/${signo}`);
+            const data = await resposta.json();
+
+            if (data.horoscopo) {
+                resultadoDiv.innerHTML = `<h2>${signo.charAt(0).toUpperCase() + signo.slice(1)}</h2><p>${data.horoscopo}</p>`;
+            } else {
+                resultadoDiv.innerHTML = `<p>Erro: ${data.erro}</p>`;
+            }
+        }
+
+        // Geração dinâmica dos corações
+        const container = document.getElementById("coracoesContainer");
+
+        for (let i = 0; i < 30; i++) {
+            const coracao = document.createElement("div");
+            coracao.classList.add("coracao-fundo");
+            coracao.textContent = "💖";
+            coracao.style.left = `${Math.random() * 100}%`;
+            coracao.style.animationDelay = `${Math.random() * 5}s`;
+            coracao.style.animationDuration = `${4 + Math.random() * 3}s`;
+            coracao.style.fontSize = `${1 + Math.random() * 2}em`;
+            container.appendChild(coracao);
+        }
+    </script>
+</body>
+</html>

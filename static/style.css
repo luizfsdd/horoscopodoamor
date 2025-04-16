@@ -1,0 +1,228 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Animação de corações subindo no fundo */
+@keyframes subirCoracoes {
+    0% {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 1;
+    }
+}
+
+/* Corações flutuando por todo o fundo */
+.coracoes-fundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Fica atrás do conteúdo */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.coracao-fundo {
+    position: absolute;
+    bottom: -50px;
+    font-size: 2em;
+    animation: subirCoracoes 5s infinite ease-in-out;
+    opacity: 0.7;
+    animation-delay: calc(-5s * random());
+    color: #ff6b81;
+}
+
+/* Estilo para o conteúdo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #fceff9, #e0c3fc);
+    color: #4a4a4a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Impede que o conteúdo da página gere scroll */
+}
+
+/* Container para o conteúdo */
+.container {
+    background: linear-gradient(145deg, #fff1f3, #f7d6e1);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    z-index: 1; /* Fica acima dos corações */
+    backdrop-filter: blur(5px);
+    border: 2px solid #ff6b81;
+}
+
+/* Estrelas piscando na borda do container */
+@keyframes piscarEstrela {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.borda-estrelas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.estrela-borda {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    border-radius: 50%;
+    animation: piscarEstrela 2s infinite ease-in-out;
+    opacity: 0.5;
+}
+
+.estrela-borda:nth-child(1) {
+    top: 5px;
+    left: 5px;
+    animation-duration: 1.5s;
+}
+
+.estrela-borda:nth-child(2) {
+    top: 5px;
+    right: 5px;
+    animation-duration: 2s;
+}
+
+.estrela-borda:nth-child(3) {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-duration: 2.5s;
+}
+
+.estrela-borda:nth-child(4) {
+    bottom: 5px;
+    left: 5px;
+    animation-duration: 3s;
+}
+
+.estrela-borda:nth-child(5) {
+    bottom: 5px;
+    right: 5px;
+    animation-duration: 1.5s;
+}
+
+.estrela-borda:nth-child(6) {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-duration: 2s;
+}
+
+.estrela-borda:nth-child(7) {
+    top: 50%;
+    left: 5px;
+    animation-duration: 2.5s;
+}
+
+.estrela-borda:nth-child(8) {
+    top: 50%;
+    right: 5px;
+    animation-duration: 3s;
+}
+
+/* Frase romântica */
+.frase-romantica {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4em;
+    color: #c94f7c;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Título */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #c94f7c;
+    text-shadow: 1px 1px 2px #fff0f5;
+}
+
+/* Dropdown */
+select {
+    padding: 12px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 2px solid #c94f7c;
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: #fff0f5;
+    transition: background-color 0.3s;
+}
+
+select:hover {
+    background-color: #ff6b81;
+}
+
+/* Botão */
+button {
+    background-color: #c94f7c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #a73861;
+}
+
+/* Resultado */
+#resultado {
+    margin-top: 25px;
+    text-align: left;
+    background: #fdf1f7;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #c94f7c;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .container {
+        padding: 30px 20px;
+    }
+
+    .frase-romantica {
+        font-size: 1.2em;
+    }
+}
